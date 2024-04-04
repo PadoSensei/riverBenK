@@ -8,6 +8,8 @@ import {
   Waves,
 } from 'lucide-react';
 import { SignInButton } from './components';
+import { SeverityCard } from './components/SeverityCard';
+import { SeverityOverview } from './components/SeverityOverview';
 
 const infoCards = [
   {
@@ -90,6 +92,7 @@ export default function Home() {
           </div>
         ))}
       </div>
+      <SeverityOverview />
     </div>
   );
 }
