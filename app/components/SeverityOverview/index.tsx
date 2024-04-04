@@ -20,7 +20,7 @@ const SeverityOverview = () => {
         defaultValue={[1]}
         value={severitLevel}
         onValueChange={(e) => setSeverityLevel(e)}
-        className="mb-10"
+        className="mb-10 mx-auto w-48"
       />
       <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
         {floods.length === 0 && (
