@@ -8,6 +8,8 @@ import {
   Waves,
 } from 'lucide-react';
 import { SignInButton } from './components';
+import { SeverityCard } from './components/SeverityCard';
+import { SeverityOverview } from './components/SeverityOverview';
 
 const infoCards = [
   {
@@ -63,7 +65,7 @@ export default function Home() {
           that.
         </h2>
         <div className="flex items-center gap-2 mt-3">
-          <SignInButton withIcon size="lg" />
+          <SignInButton withIcon size="lg" hideProfile />
           <Button size="lg" variant="outline">
             Find out more
           </Button>
@@ -90,6 +92,7 @@ export default function Home() {
           </div>
         ))}
       </div>
+      <SeverityOverview />
     </div>
   );
 }
