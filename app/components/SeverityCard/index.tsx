@@ -1,16 +1,25 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Waves } from 'lucide-react';
 
 type SeverityCardProps = {
   title: string;
   description: string;
   severitLevel: 1 | 2 | 3 | 4 | 5;
+  onViewDetails: () => void;
 };
 
 const SeverityCard = ({
   title,
   description,
   severitLevel,
+  onViewDetails,
 }: SeverityCardProps) => {
   const getSeverityColor = (severityLevel: number) => {
     switch (severityLevel) {
@@ -32,8 +41,10 @@ const SeverityCard = ({
         <CardTitle className="text-sm font-medium">{title}</CardTitle>
         <Waves className="h-4 w-4 text-muted-foreground" />
       </CardHeader>
-      <CardContent>
+      <CardContent className="h-28">
         <div className="text-2xl font-bold">{description}</div>
+      </CardContent>
+      <CardFooter className="justify-between">
         <p
           className={`text-small text-muted-foreground ${getSeverityColor(
             severitLevel,
@@ -41,7 +52,10 @@ const SeverityCard = ({
         >
           Severity level: {severitLevel}
         </p>
-      </CardContent>
+        <Button variant="outline" onClick={onViewDetails}>
+          More
+        </Button>
+      </CardFooter>
     </Card>
   );
 };

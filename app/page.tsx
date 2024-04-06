@@ -1,14 +1,6 @@
 import { Button } from '@/components/ui/button';
-import {
-  Activity,
-  BadgeDollarSign,
-  Gauge,
-  LogIn,
-  Shield,
-  Waves,
-} from 'lucide-react';
+import { Activity, BadgeDollarSign, Gauge, Shield, Waves } from 'lucide-react';
 import { SignInButton } from './components';
-import { SeverityCard } from './components/SeverityCard';
 import { SeverityOverview } from './components/SeverityOverview';
 
 const infoCards = [
