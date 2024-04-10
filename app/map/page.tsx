@@ -1,19 +1,12 @@
-//@ts-nocheck
 import MapChart from '../components/MapChart';
 
-// const stations = [
-//     { id: 1, label: "Round Pond", lat: 51.506, lng: -0.184 },
-//     { id: 2, label: "The Long Water", lat: 51.508, lng: -0.175 },
-//     { id: 3, label: "The Serpentine", lat: 51.505, lng: -0.164 }
-//   ];
-
-export default function MapPage() {
+export default async function MapPage() {
+  const data = await fetch('http://riverbenk-api.fly.dev/v1/stations');
+  const dataJson = await data.json();
   return (
-    <>
-      <p>I'm the map page</p>
-      <MapChart
-      // stations={stations}
-      />
-    </>
+    <div>
+      <h1>Data:</h1>
+      <MapChart stations={dataJson.data.stations} />
+    </div>
   );
 }

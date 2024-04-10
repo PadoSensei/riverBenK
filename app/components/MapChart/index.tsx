@@ -1,4 +1,4 @@
-// @ts-nocheck
+//@ts-nocheck
 'use client';
 import {
   GoogleMap,
@@ -9,22 +9,17 @@ import {
 import Link from 'next/link';
 import { useState } from 'react';
 
-// const stations = [
-//   { id: 1, title: "Round Pond", lat: 51.506, lng: -0.184 },
-//   { id: 2, title: "The Long Water", lat: 51.508, lng: -0.175 },
-//   { id: 3, title: "The Serpentine", lat: 51.505, lng: -0.164 }
-// ];
+export default function MapChart({ stations }) {
+  const [selectedMarker, setSelectedMarker] = useState(null);
 
-export default function MapChart() {
-  // const [selectedMarker, setSelectedMarker] = useState(null);
-
-  // function handleClick(station) {
-  //   setSelectedMarker(station);
-  // }
+  function handleClick(station) {
+    setSelectedMarker(station);
+  }
 
   function getCenter() {
     if (selectedMarker == null) {
       return {
+        // hardcoded London location to start
         lat: 52.5,
         lng: -1,
       };
@@ -47,17 +42,16 @@ export default function MapChart() {
             fullscreenControl: false,
           }}
         >
-          {/* {stations.map((station, id, lat, lng) => ( */}
-          <Marker
-            key={1}
-            // onClick={() => handleClick(station)}
-            // lat: 51.506, lng: -0.184
-            position={{
-              lat: 51.506,
-              lng: -0.184,
-            }}
-          >
-            {/* {selectedMarker === station && (
+          {stations.map((station) => (
+            <Marker
+              key={station.id}
+              onClick={() => handleClick(station)}
+              position={{
+                lat: station.lat,
+                lng: station.long,
+              }}
+            >
+              {selectedMarker === station && (
                 <InfoWindow
                   position={{
                     lat: station.lat,
@@ -71,15 +65,7 @@ export default function MapChart() {
                       <p>River Name: {station.riverName}</p>
                     )}
                     <p>Latest Readings:</p>
-                    {station.measures.map((measure, index) => {
-                      if (measure !== null) {
-                        return (
-                          <p key={index}>
-                            {measure.value} {measure.unitName}
-                          </p>
-                        );
-                      }
-                    })}
+                    {/* TODO - BUILD OUT INFO ON POPUP HERE */}
                     <Link
                       href={`/station/${station.notation}`}
                       value={station.notation}
@@ -89,9 +75,9 @@ export default function MapChart() {
                     </Link>
                   </div>
                 </InfoWindow>
-              // )} */}
-          </Marker>
-          {/* ))}  */}
+              )}
+            </Marker>
+          ))}
         </GoogleMap>
       </LoadScript>
     </div>
