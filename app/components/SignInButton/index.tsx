@@ -9,11 +9,17 @@ type ButtonSizes = ButtonProps['size'];
 const SignInButton = ({
   withIcon,
   size,
+  hideProfile,
 }: {
   withIcon?: boolean;
   size?: ButtonSizes;
+  hideProfile?: boolean;
 }) => {
   const clerk = useClerk();
+
+  if (clerk.user && hideProfile) {
+    return null;
+  }
 
   if (clerk.user) {
     return <UserButton afterSignOutUrl="/" />;
